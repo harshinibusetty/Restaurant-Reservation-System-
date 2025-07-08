@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Dining Area</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-image: url('https://img.freepik.com/free-vector/cowboy-saloon-western-retro-bar-empty-interior_107791-1752.jpg?semt=ais_hybrid&w=740');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height:100vh;
+  overflow:hidden;
+   margin: 0;
+  padding: 0;
+}
+
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      backdrop-filter:blur(2px);
+    }
+
+    h2 {
+      margin-bottom: 27px;
+      color: #db4e1f;
+    }
+
+    .area-grid {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .area-card {
+      flex: 1;
+      min-width: 150px;
+      background: #eb6847;
+      padding: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+      font-weight: bold;
+    }
+
+    .area-card:hover {
+      transform: scale(1.05);
+      background: #e27660;
+    }
+
+    .selected {
+      background: #ec755d;
+      color: white;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 25px;
+      background-color: #d82b1f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #b5baab;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Select Your Preferred Dining Area</h2>
+    <div class="area-grid">
+      <div class="area-card" data-area="Indoor">Indoor</div>
+      <div class="area-card" data-area="Outdoor">Outdoor</div>
+      <div class="area-card" data-area="Rooftop">Rooftop</div>
+    </div>
+    <button id="continueBtn" disabled>Continue</button>
+  </div>
+
+  <script>
+    const areaCards = document.querySelectorAll('.area-card');
+    const continueBtn = document.getElementById('continueBtn');
+    let selectedArea = '';
+
+    areaCards.forEach(card => {
+      card.addEventListener('click', () => {
+        areaCards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedArea = card.getAttribute('data-area');
+        continueBtn.disabled = false;
+      });
+    });
+
+    continueBtn.addEventListener('click', () => {
+      if (!selectedArea) {
+        alert("Please select a dining area.");
+        return;
+      }
+      localStorage.setItem('dineArea', selectedArea);
+      window.location.href = 'booking-slot.html';
+    });
+  </script>
+</body>
+</html>

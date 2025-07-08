@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Booking Slot – Dine Restaurant</title>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+      background-image:url("https://img.freepik.com/free-vector/appointment-booking-with-calendar_23-2148562961.jpg?w=360");
+      background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+    body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.7);  /* adds soft white layer */
+  backdrop-filter: blur(4px);           /* slight blur effect */
+  z-index: -1;
+}
+
+     
+    
+    .site-header {
+      background-color: #67c0be;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 500px;
+      background: rgb(250, 248, 248);
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #081415;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 20px;
+      display: block;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #b6eeee;
+      color: rgb(19, 8, 8);
+      margin-top: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #a2cdce;
+    }
+
+    .badge {
+      background: #8cdce9;
+      padding: 8px 16px;
+      border-radius: 20px;
+      color: #010f0f;
+      margin: 0 5px;
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    .badges {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    Dine Reserve
+  </header>
+
+  <div class="container">
+    <h2>Select Booking Slot</h2>
+
+    <div class="badges">
+      <span class="badge" id="badgeCity"></span>
+      <span class="badge" id="badgeRestaurant"></span>
+      <span class="badge" id="badgeArea"></span>
+    </div>
+
+    <form id="slotForm">
+      <label for="bookingDate">Select Date:</label>
+      <input type="date" id="bookingDate" required />
+
+      <label for="bookingTime">Select Time Slot:</label>
+      <select id="bookingTime" required>
+        <option value="">-- Choose Time --</option>
+        <option>12:00 PM - 1:00 PM</option>
+        <option>1:00 PM - 2:00 PM</option>
+        <option>6:00 PM - 7:00 PM</option>
+        <option>7:00 PM - 8:00 PM</option>
+        <option>8:00 PM - 9:00 PM</option>
+      </select>
+
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+
+  <script>
+    // Set min date to today
+    document.addEventListener("DOMContentLoaded", () => {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('bookingDate').setAttribute('min', today);
+
+      document.getElementById('badgeCity').innerText = "City: " + (localStorage.getItem('dineCity') || 'N/A');
+      document.getElementById('badgeRestaurant').innerText = "Restaurant: " + (localStorage.getItem('dineRestaurant') || 'N/A');
+      document.getElementById('badgeArea').innerText = "Area: " + (localStorage.getItem('dineArea') || 'N/A');
+    });
+
+    // Handle form submission
+    document.getElementById('slotForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const date = document.getElementById('bookingDate').value;
+      const time = document.getElementById('bookingTime').value;
+
+      const details = JSON.parse(localStorage.getItem('bookingDetails') || '{}');
+
+      if (!details.name || !details.email || !details.phone) {
+        alert("Missing user details. Please start from the beginning.");
+        window.location.href = "details.html";
+        return;
+      }
+
+      const bookingData = {
+        ...details,
+        date,
+        time,
+        city: localStorage.getItem('dineCity'),
+        restaurant: localStorage.getItem('dineRestaurant'),
+        area: localStorage.getItem('dineArea')
+      };
+
+      sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+      window.location.href = 'confirmation.html';
+    });
+  </script>
+
+</body>
+</html>

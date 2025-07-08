@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dine Restaurant - Enter Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("https://imgcdn.stablediffusionweb.com/2024/9/11/117a76b8-80e1-4c3c-b063-3a659535c189.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 320px;
+      margin: 80px auto;
+      background: rgb(91, 38, 19);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(183, 174, 174, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #f08365;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: white;
+    }
+
+    input {
+      width: 100%;
+      margin-top: 5px;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #b3451a;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #3b1502;
+      color: rgb(239, 230, 230);
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 25px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #ce6610;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Enter Your Details</h2>
+    <form id="detailsForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" required pattern="[0-9]{10}" title="Enter 10-digit phone number" />
+
+      <label for="persons">No. of Persons:</label>
+      <input type="number" id="persons" min="1" required />
+
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('detailsForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const persons = document.getElementById('persons').value.trim();
+
+      if (!name || !email || !phone || !persons) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const bookingDetails = {
+        name,
+        email,
+        phone,
+        persons
+      };
+
+      localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+
+      window.location.href = "city.html"; // Change this to your next page
+    });
+  </script>
+
+</body>
+</html>

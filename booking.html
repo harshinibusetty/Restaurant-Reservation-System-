@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dine Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .section-toggle {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .section-toggle button {
+      padding: 8px 16px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      background-color: rgb(4, 3, 4);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: rgb(228, 228, 228);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(209, 192, 192, 0.1);
+      width: 250px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body style="
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://koala.sh/api/image/v2-afz7z-novpj.jpg?width=1344&height=768&dream');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+">
+
+  <h1 style="text-align: center; padding-top: 20px;">Dine Reserve</h1>
+
+  <div class="section-toggle">
+    <button onclick="toggleSection('whyDineSection')">Why Dine</button>
+    <button onclick="toggleSection('resourcesSection')">Resources</button>
+  </div>
+
+  <!-- WHY DINE SECTION -->
+  <div id="whyDineSection" style="display: none;">
+    <h2 style="text-align: center;">Why Choose Dine Restaurant?</h2>
+    <div class="card-container">
+      <div class="card">Curated Menus</div>
+      <div class="card">Easy Reservations</div>
+      <div class="card">Beautiful Ambience</div>
+      <div class="card">Trusted by Food Lovers</div>
+    </div>
+  </div>
+
+  <!-- RESOURCES SECTION -->
+  <div id="resourcesSection" style="display: none;">
+    <h2 style="text-align: center;">Resources</h2>
+    <div class="card-container">
+      <div class="card">Blog & Recipes</div>
+      <div class="card">FAQs</div>
+      <div class="card">Support</div>
+      <div class="card">Terms & Policies</div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin: 30px;">
+    <button onclick="goToSignin()" style="padding: 10px 20px; background-color: #010001; color: white; border: none; border-radius: 6px;">
+      Continue
+    </button>
+  </div>
+
+  <script>
+    function toggleSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      section.style.display = section.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function goToSignin() {
+      window.location.href = "signin.html"; // adjust this path as needed
+    }
+
+    window.onload = () => {
+      document.getElementById("whyDineSection").style.display = "none";
+      document.getElementById("resourcesSection").style.display = "none";
+    };
+  </script>
+
+</body>
+</html>

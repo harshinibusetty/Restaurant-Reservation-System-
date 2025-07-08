@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles.css">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select City – Dine Restaurant</title>
+  <style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://snipstock.com/wp-content/uploads/2024/12/chaunceyhaworth_painted_cartoon_background_of_a_city_street_3e22bebb-9bd4-423e-8f75-70f9b38e8c36.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+  }
+    .city-container {
+      max-width: 400px;
+      margin: 80px auto;
+      background: #c7c1c1;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #e8dede;
+      font-size: 16px;
+    }
+    button {
+      background-color: #342a7b;
+      color: #fff;
+      border: none;
+    }
+    button:hover {
+      background-color: #5941a9;
+    }
+  </style>
+</head>
+<body>
+  <div class="city-container">
+    <h2>Select Your City</h2>
+    <form id="cityForm">
+      <select id="citySelect" required>
+        <option value="">-- Choose City --</option>
+        <option value="Guntur">Guntur</option>
+        <option value="Vijayawada">Vijayawada</option>
+        <option value="Hyderabad">Hyderabad</option>
+      <option value="Mangalagiri"> Mangalagiri</option>
+      </select>
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('cityForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const city = document.getElementById('citySelect').value;
+      if (!city) {
+        alert("Please select a city.");
+        return;
+      }
+      localStorage.setItem('dineCity', city);
+      window.location.href = 'select restaurant.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Confirmation - Dine Restaurant</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://static.vecteezy.com/system/resources/previews/025/441/294/non_2x/food-delivery-service-tiny-people-order-food-online-chefs-and-courier-prepare-food-to-order-pizza-burger-french-fries-sushi-modern-flat-cartoon-style-illustration-on-white-background-vector.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .header {
+      background-color: hsl(0, 0%, 0%);
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #444;
+    }
+
+    button {
+      background-color: #151301;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin: 20px 10px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #973b97;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">Dine Reserve</div>
+
+  <div class="container">
+    <h2>Booking Confirmed!</h2>
+
+    <div class="info" id="nameField"></div>
+    <div class="info" id="emailField"></div>
+    <div class="info" id="dateField"></div>
+    <div class="info" id="timeField"></div>
+    <div class="info" id="areaField"></div>
+    <div class="info" id="personsField"></div>
+
+    <button onclick="downloadPDF()">Download PDF</button>
+    <button onclick="window.location.href='index.html'">Make Another Booking</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    const data = JSON.parse(sessionStorage.getItem('bookingData') || '{}');
+
+    document.getElementById('nameField').innerText = "Name: " + (data.name || "N/A");
+    document.getElementById('emailField').innerText = "Email: " + (data.email || "N/A");
+    document.getElementById('dateField').innerText = "Date: " + (data.date || "N/A");
+    document.getElementById('timeField').innerText = "Time: " + (data.time || "N/A");
+    document.getElementById('areaField').innerText = "Dining Area: " + (data.area || "N/A");
+    document.getElementById('personsField').innerText = "No. of Persons: " + (data.persons || "N/A");
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(18);
+      doc.text("Booking Confirmation", 20, 20);
+      doc.setFontSize(12);
+      doc.text("Name: " + data.name, 20, 40);
+      doc.text("Email: " + data.email, 20, 50);
+      doc.text("Date: " + data.date, 20, 60);
+      doc.text("Time: " + data.time, 20, 70);
+      doc.text("Dining Area: " + data.area, 20, 80);
+      doc.text("No. of Persons: " + data.persons, 20, 90);
+      doc.save("booking_confirmation.pdf");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+/* === General Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #fff6f2;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* === Header (Text-Only, No Logo) === */
+header {
+  background-color: #f5f5f5;
+  padding: 12px 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #6a5acd;
+  margin: 0;
+}
+
+/* === Grid Layout for Dining Cards === */
+#dining-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 30px 0;
+}
+
+/* === Card Style === */
+.card {
+  background-color: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+.card .icon {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+/* === Toast Notification === */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #6c5ce7;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+  max-width: 90%;
+  width: auto;
+  white-space: nowrap;
+}
+
+.toast.visible {
+  display: block;
+}
+
+.toast .close-btn {
+  margin-left: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* === Continue Button === */
+#continueBtn {
+  background-color: #ff6f61;
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+}
+#continueBtn:hover {
+  background-color: #ff3b2f;
+}
+
+/* Spinner inside Continue Button */
+.spinner {
+  border: 2px solid white;
+  border-left: 2px solid transparent;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  animation: spin 0.8s linear infinite;
+  display: none;
+}
+.spinner.active {
+  display: inline-block;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* === Booking Form === */
+.booking-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.booking-form input,
+.booking-form button {
+  width: 100%;
+  padding: 10px;
+  margin: 12px 0;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* === Confirmation Section === */
+.confirmation {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.confirmation h2 {
+  margin-bottom: 20px;
+}
+.confirmation p {
+  margin: 10px 0;
+}
+.confirmation .btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ba65aa;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.confirmation .btn:hover {
+  background-color: #7c4981;
+}
+
+/* === Reveal Why Dine Button === */
+#revealWhyDine {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: #ff6f61;
+  color: white;
+  font-size: 22px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 20px auto;
+  transition: background-color 0.3s ease;
+}
+#revealWhyDine:hover {
+  background-color: #ff3b2f;
+}
+
+/* === Footer and Info === */
+footer,
+.info-section {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+/* === Focus Styles (Accessibility) === */
+button:focus,
+.card:focus,
+a.btn:focus {
+  outline: 2px solid #6a5acd;
+  outline-offset: 3px;
+}
+
+/* === Responsive Enhancements === */
+@media (max-width: 480px) {
+  .booking-form,
+  .confirmation {
+    padding: 20px 15px;
+  }
+  #continueBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+.continue-btn {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0 2rem;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+}
+
+.card {
+  background-color: white;
+  padding: 15px;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  font-weight: bold;
+}
